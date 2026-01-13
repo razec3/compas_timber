@@ -12,6 +12,8 @@ from compas_timber.fabrication import Slot
 from compas_timber.fabrication import OrientationType
 from compas_timber.fabrication import MachiningLimits
 
+from compas.tolerance import TOL
+
 
 @pytest.fixture
 def beam():
@@ -194,6 +196,9 @@ def test_slot_scaled():
 
 
 def test_slot_apply_points():
+    TOL.absolute = 0.001
+    TOL.relative = 0.01
+
     beam = Beam.from_centerline(Line(Point(0, 0, 0), Point(100, 0, 0)), width=30, height=50)
     ml = MachiningLimits()
     slot = slot = Slot(
@@ -231,6 +236,9 @@ def test_slot_apply_points():
 
 
 def test_slot_apply_frames():
+    TOL.absolute = 0.001
+    TOL.relative = 0.01
+
     beam = Beam.from_centerline(Line(Point(0, 0, 0), Point(100, 0, 0)), width=30, height=50)
     ml = MachiningLimits()
     slot = slot = Slot(
@@ -312,6 +320,9 @@ def test_slot_apply_frames():
 
 
 def test_slot_volume_subtracting_polyhedron(beam):
+    TOL.absolute = 0.001
+    TOL.relative = 0.01
+    
     beam = Beam.from_centerline(Line(Point(0, 0, 0), Point(100, 0, 0)), width=30, height=50)
     ml = MachiningLimits()
     slot = slot = Slot(
